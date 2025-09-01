@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      *{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: rgb(232, 249, 253);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+.formInp{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 50px auto;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    color: black;
+    font: 900;
+    background: rgb(207, 200, 186);
+}
+.inp{
+    color: black;
+    padding: 10px 20px;
+    font-size: larger;
+}
+#subBtn{
+    padding: 10px 30px;
+    background: yellow;
+    font: bolder;
+    cursor: pointer;
+    width: 50%;
+}
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  h1{
+    padding: 20px 0px;
+  }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+  <form action="/" method="POST" enctype="application/x-www-form-urlencoded" onsubmit="return validateForm()">
+    
+        <div class="formInp">
+          <h1>Message Scheduler</h1>
+          <input type="text" name="message" id="" class="inp" placeholder="Enter your message here"><br>
+        <input type="number" name="num" id="destination_number" class="inp" required pattern="(97|98)\d{8}" placeholder="Enter The number here"><br>
+        Select Date <input type="datetime-local" name="getDate" id="getdate" class="inp"><br>
+        
+        
+        <input type="submit" name="" id="subBtn">
+      </div>
+       
+    </body>
+    </form>
+    <script>
+        function validateForm() {
+          let numberInput = document.getElementById("destination_number").value;
+          if (numberInput.length !== 10 || isNaN(numberInput)) {
+            alert("Please enter a 10-digit number.");
+            return false;
+          }
+          
+          let currentDate= new Date();
+          let getDate=new Date(document.getElementById("getdate").value);
+          if(getDate<=currentDate){
+            alert("Please select the future date.");
+            return false;
+          }
+          return true; 
+        }
+      </script>
+</html>
